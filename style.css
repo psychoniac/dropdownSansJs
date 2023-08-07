@@ -1,0 +1,88 @@
+:root{
+    --list-padding: 10px;
+    --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --font-fam1: 'Capriola';
+    --font-fam2: 'Roboto' ;
+    --color-darkred: #5a0303;
+    --color-darkGrey: #252424;
+    --color-darkPurple: #4d054d;
+    --color-poison: #71c471;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+    height: 100vh;
+    background-image: linear-gradient(135deg, var(--color-darkPurple) 0%, var(--color-darkred) 100%);
+}
+
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+nav{
+    color: var(--color-poison);
+    font-family: var(--font-fam1);
+    font-weight: 400;
+    background-color: #636262;
+    opacity: 0.6;
+    padding: 10px 40px;
+}
+/*on cible les liste qui sont les enfants direct de nav */
+nav > ul {
+display: flex;
+width: max-content;
+margin: 0 auto;
+}
+/*on vient selectionner tous les liens contenu dans la nav */
+nav ul li a {
+    width: 150px;
+/*on met en display block pour que la propriété width soit bien prise en compte*/
+    display: block;
+    padding-top: var(--list-padding);
+    padding-bottom: var(--list-padding);
+    text-align: center;
+    font-size: 25px;
+    transition: all 1s ease-out;
+
+}
+/*pour centrer verticalement l'icone drop-down*/
+nav ul li a img{
+    vertical-align: middle;
+}
+nav ul li a:hover{
+    color: var(--color-darkred);
+    border-bottom: 1px solid var(--color-darkGrey);
+}
+/*on positionne les element du dropdown pour les sortir de la navbar*/
+.dropdown{
+    position: relative;
+}
+
+.dropdown ul{
+    position: absolute;
+/*on doit jouer sur le positionnement pour retoucher un décalage*/
+    top: calc(100% + var(--list-padding));
+    left: 0;
+    background-color: var(--color-darkGrey);
+    color: var(--color-darkred);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.dropdown:hover ul{
+    visibility: visible;
+    opacity: 1;
+    box-shadow: var(--shadow);
+}
+/*on selectionne les elements li dans le dropdown sauf le dernier*/
+nav ul li ul li:not(:last-child){
+    border-bottom: 1px solid #121212;
+}
